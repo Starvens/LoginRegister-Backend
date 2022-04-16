@@ -7,7 +7,9 @@ app.use(bodyParser.json());
 app.use(express.json())
 
 const verify=require('./signup/verify')
+const signup=require('./signup/signup')
 
-app.use(verify)
+app.use('/verify',verify)
+app.use('/signup',signup)
 
-app.listen(8087,()=>console.log('listning....'))
+app.listen(8082,()=>console.log('listning....'))
