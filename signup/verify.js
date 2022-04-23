@@ -2,6 +2,7 @@ const express= require('express')
 const router =new express.Router()
 const otpGenerator = require('otp-generator')
 const userStatus=require('../schema/userStatus');
+const sendotp=require('../email/sendgrid')
 
 router.post('/email',async (req,res)=>{
     const email=req.body.email
@@ -13,8 +14,8 @@ router.post('/email',async (req,res)=>{
         const newUser =new userStatus({email, otp , status:0})
         try{
             await newUser.save()
+            sendotp(email,otp)
             res.status(201).send({email})
-            //email trigger
         }
         catch(e){
             res.status(400).send(e)
@@ -22,7 +23,7 @@ router.post('/email',async (req,res)=>{
     } 
     else{
         user.updateotp(otp)
-        //email trigger
+        sendotp(email,otp)
         res.status(200).send({email})
     }
 
@@ -42,8 +43,8 @@ router.post('/otp',async (req,res)=>{
 router.get('/resend',async (req,res)=>{
     const {email}=req.body
     const user = await userStatus.findByCred(email)
-    console.log(user)
-    //email trigger
+    console.log(user.otp)
+    sendotp(email,user.otp)
     res.status(200).send({status:true})
 })
 
