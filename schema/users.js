@@ -55,7 +55,14 @@ const user=new mongoose.Schema({
     timestamps:true
 })
 
+user.statics.findByCred= async(email)=>{
+    const user = await users.findOne({email:email})
 
+    if(!user){
+        return 0
+    }
+    return user
+}
 
 const users=mongoose.model('users',user)
 
