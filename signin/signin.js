@@ -16,6 +16,11 @@ router.post('/',async (req,res)=>{
         res.status(401).send({msg:'incorrect password'})
     }
     else{
+        delete user.password
+        delete user.securityQuestionOne
+        delete user.securityOne
+        delete user.securityQuestionTwo
+        delete user.securityTwo
         res.status(200).send(user)
     }
 })
