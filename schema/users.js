@@ -15,16 +15,16 @@ const user=new mongoose.Schema({
         trim:true,
         lowercase:true
     },
-    firstname:{
+    firstName:{
         type : String
     },
-    lastname:{
+    lastName:{
         type : String
     },
-    phone:{
+    phoneNumber:{
         type : String
     },
-    zip:{
+    zipCode:{
         type : String
     },
     password:{
@@ -32,7 +32,25 @@ const user=new mongoose.Schema({
         type:String,
         minlength:7,
         trim:true,
-    }
+    },
+    birthday:{
+        type : String
+    },
+    securityQuestionOne:{
+        type : String
+    },
+    securityOne:{
+        type : String
+    },
+    securityQuestionTwo:{
+        type : String
+    },
+    securityTwo:{
+        type : String
+    },
+    terms:{
+        type : String
+    },
 },{
     timestamps:true
 })

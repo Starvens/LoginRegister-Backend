@@ -15,7 +15,7 @@ router.post('/email',async (req,res)=>{
         try{
             await newUser.save()
             sendotp(email,otp)
-            res.status(201).send({email})
+            res.status(200).send({email})
         }
         catch(e){
             res.status(400).send(e)

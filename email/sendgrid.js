@@ -8,8 +8,11 @@ const msg = {
   to: To,
   from: 'no-reply@starvens.com', // Use the email address or domain you verified above
   subject: 'OTP verification',
-  // text: 'and easy to do anywhere, even with Node.js',
-  html: '<strong>OTP: '+otp+'</strong>',
+  template_id:'d-470688d8529c4cc3aad629e7005ef376',
+  dynamic_template_data:{
+    subject: "Starvens Email Verification OTP is "+otp,
+    otp:otp
+  },
 };
 //ES6
 sgMail
